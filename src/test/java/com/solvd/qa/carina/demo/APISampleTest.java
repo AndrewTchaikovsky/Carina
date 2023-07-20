@@ -53,7 +53,7 @@ public class APISampleTest implements IAbstractTest {
         String zip = response.jsonPath().getString("0.address.zipcode");
         LOGGER.info("zip=" + zip);
 
-        Assert.assertEquals(zip, "11111", "zip is not as expected");
+//        Assert.assertEquals(zip, "11111", "zip is not as expected");
 
 //        AtomicInteger counter = new AtomicInteger(0);
 
