@@ -8,11 +8,14 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
-@Endpoint(url = "${base_url}/data/2.5/weather?zip=99999999999999999999,us&appid=01e307599143267de26f1960219c1c57", methodType = HttpMethodType.GET)
+@Endpoint(url = "${base_url}/data/${api_version}/weather?zip=${very_long_zip},us&appid=${api_key}", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/weather/_get/rsVeryLongZip.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.NOT_FOUND_404)
 public class RequestWeatherByVeryLongZipMethod extends AbstractApiMethodV2{
-    public RequestWeatherByVeryLongZipMethod() {
+    public RequestWeatherByVeryLongZipMethod(String veryLongZip) {
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
+        replaceUrlPlaceholder("api_key", Configuration.getRequired("api_key"));
+        replaceUrlPlaceholder("api_version", Configuration.getRequired("api_version"));
+        replaceUrlPlaceholder("very_long_zip", veryLongZip);
     }
 }

@@ -5,6 +5,7 @@ import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
@@ -13,88 +14,80 @@ public class OpenWeatherMapAPITest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByCoordinates() throws Exception {
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByCoordinates() {
         // preparing of the request
-        RequestWeatherByCoordinatesMethod api = new RequestWeatherByCoordinatesMethod();
+        RequestWeatherByCoordinatesMethod api = new RequestWeatherByCoordinatesMethod(44.34, 10.99);
         // making the call to endpoint
         api.callAPIExpectSuccess();
         // validation of the response
         api.validateResponseAgainstSchema("api/weather/_get/rsCoordinates.schema");
     }
 
-    @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByCityName() throws Exception {
-        RequestWeatherByCityNameMethod api = new RequestWeatherByCityNameMethod();
+    @Test(dataProvider = "testData", dataProviderClass=RequestWeatherByCityNameMethod.class)
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByCityName(String cityName) {
+        RequestWeatherByCityNameMethod api = new RequestWeatherByCityNameMethod(cityName);
         api.callAPIExpectSuccess();
         api.validateResponseAgainstSchema("api/weather/_get/rs.schema");
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByCityID() throws Exception {
-        RequestWeatherByCityNameMethod api = new RequestWeatherByCityNameMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByZip() {
+        RequestWeatherByZipMethod api = new RequestWeatherByZipMethod(11235);
         api.callAPIExpectSuccess();
         api.validateResponseAgainstSchema("api/weather/_get/rs.schema");
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByZip() throws Exception {
-        RequestWeatherByZipMethod api = new RequestWeatherByZipMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByCityIdWithLanguage() {
+        RequestWeatherByCityIdWithLanguageMethod api = new RequestWeatherByCityIdWithLanguageMethod(2172797, "kr");
         api.callAPIExpectSuccess();
         api.validateResponseAgainstSchema("api/weather/_get/rs.schema");
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherInRussian() throws Exception {
-        RequestWeatherByCityIdInRussianMethod api = new RequestWeatherByCityIdInRussianMethod();
-        api.callAPIExpectSuccess();
-        api.validateResponseAgainstSchema("api/weather/_get/rs.schema");
-    }
-
-    @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherHistoricalData() throws Exception {
-        RequestWeatherHistoricalDataMethod api = new RequestWeatherHistoricalDataMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherHistoricalData() {
+        RequestWeatherHistoricalDataMethod api = new RequestWeatherHistoricalDataMethod(-16.92, 145.77);
         api.callAPIExpectSuccess();
         LOGGER.info("Not authorized with this level of access.");
         api.validateResponse();
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByCoordinatesWithNullLatitude() throws Exception {
-        RequestWeatherByCoordinatesWithNullLatitudeMethod api = new RequestWeatherByCoordinatesWithNullLatitudeMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByCoordinatesWithNullLatitude() {
+        RequestWeatherByCoordinatesWithNullLatitudeMethod api = new RequestWeatherByCoordinatesWithNullLatitudeMethod(10);
         api.callAPIExpectSuccess();
         LOGGER.info("The latitude cannot be null.");
         api.validateResponse();
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByNonExistentCityName() throws Exception {
-        RequestWeatherByNonExistentCityNameMethod api = new RequestWeatherByNonExistentCityNameMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByNonExistentCityName() {
+        RequestWeatherByNonExistentCityNameMethod api = new RequestWeatherByNonExistentCityNameMethod("BarbieTown");
         api.callAPIExpectSuccess();
         LOGGER.info("The city does not exist.");
         api.validateResponse();
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByNegativeCityID() throws Exception {
-        RequestWeatherByNegativeCityIDMethod api = new RequestWeatherByNegativeCityIDMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByNegativeCityID() {
+        RequestWeatherByNegativeCityIDMethod api = new RequestWeatherByNegativeCityIDMethod(-2172797);
         api.callAPIExpectSuccess();
         LOGGER.info("The city ID is not valid.");
         api.validateResponse();
     }
 
     @Test()
-    @MethodOwner(owner = "Andrew")
-    public void testRequestWeatherByVeryLongZip() throws Exception {
-        RequestWeatherByVeryLongZipMethod api = new RequestWeatherByVeryLongZipMethod();
+    @MethodOwner(owner = "achaykovskiy")
+    public void testRequestWeatherByVeryLongZip() {
+        RequestWeatherByVeryLongZipMethod api = new RequestWeatherByVeryLongZipMethod("999999999999999999999999999");
         api.callAPIExpectSuccess();
         LOGGER.info("The city does not exist.");
         api.validateResponse();

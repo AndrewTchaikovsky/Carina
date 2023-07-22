@@ -7,11 +7,14 @@ import com.zebrunner.carina.api.annotation.SuccessfulHttpStatus;
 import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
-@Endpoint(url = "${base_url}/data/2.5/weather?id=-2172797&appid=01e307599143267de26f1960219c1c57", methodType = HttpMethodType.GET)
+@Endpoint(url = "${base_url}/data/${api_version}/weather?id=${city_id}&appid=${api_key}", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/weather/_get/rsNegativeCityID")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.BAD_REQUEST_400)
 public class RequestWeatherByNegativeCityIDMethod extends AbstractApiMethodV2{
-    public RequestWeatherByNegativeCityIDMethod() {
+    public RequestWeatherByNegativeCityIDMethod(long negativeCityId) {
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
+        replaceUrlPlaceholder("api_key", Configuration.getRequired("api_key"));
+        replaceUrlPlaceholder("api_version", Configuration.getRequired("api_version"));
+        replaceUrlPlaceholder("city_id", String.valueOf(negativeCityId));
     }
 }

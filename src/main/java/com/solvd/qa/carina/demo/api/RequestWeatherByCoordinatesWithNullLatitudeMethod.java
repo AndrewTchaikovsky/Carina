@@ -8,11 +8,14 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
-@Endpoint(url = "${base_url}/data/2.5/weather?lat=null&lon=10.99&appid=01e307599143267de26f1960219c1c57", methodType = HttpMethodType.GET)
+@Endpoint(url = "${base_url}/data/${api_version}/weather?lat=null&lon=${longitude}&appid=${api_key}", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/weather/_get/rsNullLatitude.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.BAD_REQUEST_400)
 public class RequestWeatherByCoordinatesWithNullLatitudeMethod extends AbstractApiMethodV2{
-    public RequestWeatherByCoordinatesWithNullLatitudeMethod() {
+    public RequestWeatherByCoordinatesWithNullLatitudeMethod(double longitude) {
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
+        replaceUrlPlaceholder("api_key", Configuration.getRequired("api_key"));
+        replaceUrlPlaceholder("api_version", Configuration.getRequired("api_version"));
+        replaceUrlPlaceholder("longitude", String.valueOf(longitude));
     }
 }

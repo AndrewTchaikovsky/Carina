@@ -7,10 +7,13 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
-@Endpoint(url = "${base_url}/data/2.5/weather?zip=94040,us&appid=01e307599143267de26f1960219c1c57", methodType = HttpMethodType.GET)
+@Endpoint(url = "${base_url}/data/${api_version}/weather?zip=${zip},us&appid=${api_key}", methodType = HttpMethodType.GET)
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class RequestWeatherByZipMethod extends AbstractApiMethodV2{
-    public RequestWeatherByZipMethod() {
+    public RequestWeatherByZipMethod(long zip) {
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
+        replaceUrlPlaceholder("api_key", Configuration.getRequired("api_key"));
+        replaceUrlPlaceholder("api_version", Configuration.getRequired("api_version"));
+        replaceUrlPlaceholder("zip", String.valueOf(zip));
     }
 }
