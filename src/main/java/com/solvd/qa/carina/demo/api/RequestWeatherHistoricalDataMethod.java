@@ -7,6 +7,12 @@ import com.zebrunner.carina.api.annotation.SuccessfulHttpStatus;
 import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
+import freemarker.template.Template;
+
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+
 @Endpoint(url = "${base_url}/data/${api_version}/history/city?lat=${latitude}&lon=${longitude}&appid=${api_key}", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/weather/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.UNAUTHORIZED_401)

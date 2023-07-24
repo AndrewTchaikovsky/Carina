@@ -68,7 +68,7 @@ public class APISampleTest implements IAbstractTest {
     @MethodOwner(owner = "qpsdemo")
     public void testCreateUserMissingSomeFields() throws Exception {
         PostUserMethod api = new PostUserMethod();
-        api.setProperties("api/users/user.properties");
+        api.setProperties("sample/api/users/user.properties");
         api.getProperties().remove("name");
         api.getProperties().remove("username");
         api.callAPIExpectSuccess();

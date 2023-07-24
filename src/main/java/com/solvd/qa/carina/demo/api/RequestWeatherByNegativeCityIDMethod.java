@@ -8,7 +8,7 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 @Endpoint(url = "${base_url}/data/${api_version}/weather?id=${city_id}&appid=${api_key}", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/weather/_get/rsNegativeCityID")
+@ResponseTemplatePath(path = "api/weather/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.BAD_REQUEST_400)
 public class RequestWeatherByNegativeCityIDMethod extends AbstractApiMethodV2{
     public RequestWeatherByNegativeCityIDMethod(long negativeCityId) {

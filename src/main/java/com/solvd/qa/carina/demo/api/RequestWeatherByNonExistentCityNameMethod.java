@@ -9,7 +9,7 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url = "${base_url}/data/${api_version}/weather?q=${non_existent_city_name}&appid=${api_key}", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/weather/_get/rsNonExistentCity.json")
+@ResponseTemplatePath(path = "api/weather/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.NOT_FOUND_404)
 public class RequestWeatherByNonExistentCityNameMethod extends AbstractApiMethodV2{
     public RequestWeatherByNonExistentCityNameMethod(String nonExistentCityName) {
