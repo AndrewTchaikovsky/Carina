@@ -13,6 +13,8 @@ import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 public class OpenWeatherMapAPITest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -24,19 +26,21 @@ public class OpenWeatherMapAPITest implements IAbstractTest {
         String jsonResponse = response.asString();
         double latitude = JsonPath.read(jsonResponse, "$.coord.lat");
         double longitude = JsonPath.read(jsonResponse, "$.coord.lon");
-        Assert.assertEquals(44.34, latitude, 0.001);
-        Assert.assertEquals(10.99, longitude, 0.001);
+        assertEquals("Latitude is not as expected.", 44.34, latitude, 0.001);
+        assertEquals("Longitude is not as expected.", 10.99, longitude, 0.001);
         api.validateResponseAgainstSchema("api/weather/_get/rsCoordinates.schema");
     }
 
     @Test(dataProvider = "testData", dataProviderClass = RequestWeatherByCityNameMethod.class)
     @MethodOwner(owner = "achaykovskiy")
-    public void testRequestWeatherByCityName(String cityName) {
+    public void testRequestWeatherByCityName(String cityName, int cityId) {
         RequestWeatherByCityNameMethod api = new RequestWeatherByCityNameMethod(cityName);
         Response response = api.callAPIExpectSuccess();
         String jsonResponse = response.asString();
         String city = JsonPath.read(jsonResponse, "$.name");
-        Assert.assertEquals(cityName, city);
+        int id = JsonPath.read(jsonResponse, "$.id");
+        assertEquals("City name is not as expected.", cityName, city);
+        assertEquals("City ID is not as expected.", cityId, id);
         api.validateResponseAgainstSchema("api/weather/_get/rs.schema");
     }
 
@@ -57,7 +61,7 @@ public class OpenWeatherMapAPITest implements IAbstractTest {
         Response response = api.callAPIExpectSuccess();
         String jsonResponse = response.asString();
         String id = JsonPath.read(jsonResponse, "$.id").toString();
-        Assert.assertEquals("2172797", id);
+        assertEquals("City ID is not as expected.", "2172797", id);
         api.validateResponseAgainstSchema("api/weather/_get/rs.schema");
     }
 

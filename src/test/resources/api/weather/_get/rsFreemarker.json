@@ -22,8 +22,8 @@
   },
   "visibility": "skip",
   "wind": {
-    "speed": "skip",
-    "deg": "skip"
+    <#if speed??>"speed": ${speed},</#if>
+    <#if deg??>"deg": ${deg},</#if>
   },
   "clouds": {
     "all": "skip"

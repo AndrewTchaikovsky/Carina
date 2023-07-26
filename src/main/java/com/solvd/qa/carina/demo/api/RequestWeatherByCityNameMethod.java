@@ -21,7 +21,9 @@ public class RequestWeatherByCityNameMethod extends AbstractApiMethodV2 {
     @DataProvider(name = "testData")
     public static Object[][] testData() {
         return new Object[][]{
-                {"Delhi"},{"Miami"},{"Seoul"}
+                {"Delhi", 1273294},
+                {"Miami", 4164138},
+                {"Seoul", 1835848}
         };
     }
 
