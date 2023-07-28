@@ -1,5 +1,6 @@
-package com.solvd.qa.carina.demo.web;
+package com.solvd.qa.carina.demo;
 
+import com.solvd.qa.carina.demo.web.HomePageWeb;
 import org.testng.annotations.Test;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;

@@ -16,7 +16,7 @@
 
     <test name="eBay web tests">
         <classes>
-            <class name="com.solvd.qa.carina.demo.web.WebTest" />
+            <class name="com.solvd.qa.carina.demo.WebTest" />
         </classes>
     </test>
 
