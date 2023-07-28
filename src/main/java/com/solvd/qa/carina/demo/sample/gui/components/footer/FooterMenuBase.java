@@ -13,6 +13,10 @@ public abstract class FooterMenuBase extends AbstractUIObject {
         super(driver, searchContext);
     }
 
+    public FooterMenuBase(WebDriver driver) {
+        super(driver);
+    }
+
     public abstract NewsPageBase openNewsPage();
 
     public abstract HomePageBase openHomePage();

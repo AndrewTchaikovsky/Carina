@@ -1,9 +1,14 @@
-package com.solvd.qa.carina.demo.sampletests;
+package com.solvd.qa.carina.demo.sample;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -24,6 +29,8 @@ import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import com.zebrunner.carina.core.registrar.tag.Priority;
 import com.zebrunner.carina.core.registrar.tag.TestPriority;
 
+import static com.mongodb.util.MyAsserts.assertEquals;
+
 /**
  * This sample shows how create Web test.
  *
@@ -39,7 +46,8 @@ public class WebSampleTest implements IAbstractTest {
         // Open GSM Arena home page and verify page is opened
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
-        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+//        Assert.assertTrue(homePage.isPageOpened(), "Home page is not opened");
+        homePage.assertPageOpened();
 
         // Select phone brand
         BrandModelsPageBase productsPage = homePage.selectBrand("Samsung");
@@ -105,7 +113,7 @@ public class WebSampleTest implements IAbstractTest {
         softAssert.assertAll();
     }
 
-    @Test()
+    @Test(dependsOnMethods = "testNewsSearch", alwaysRun = true)
     @MethodOwner(owner = "qpsdemo")
     @TestPriority(Priority.P3)
     @TestLabel(name = "feature", value = { "web", "regression" })

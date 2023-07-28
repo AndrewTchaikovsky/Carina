@@ -3,6 +3,7 @@ package com.solvd.qa.carina.demo.sample.gui.pages.desktop;
 import java.util.List;
 
 import com.solvd.qa.carina.demo.sample.gui.components.NewsItem;
+import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,12 +32,17 @@ public class NewsPage extends NewsPageBase {
     public NewsPage(WebDriver driver) {
         super(driver);
         setPageURL("/news.php3");
+//        setPageAbsoluteURL("");
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(searchTextField);
     }
 
     @Override
     public List<NewsItem> searchNews(String q) {
+        searchTextField.format("submit").click();
+        searchTextField.isElementPresent(3);
         searchTextField.type(q);
-        searchButton.click();
+        searchButton.click(3);
         return news;
     }
 

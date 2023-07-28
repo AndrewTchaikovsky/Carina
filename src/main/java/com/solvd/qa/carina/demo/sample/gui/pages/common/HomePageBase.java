@@ -13,10 +13,10 @@ public abstract class HomePageBase extends AbstractPage {
     @FindBy(xpath = "//button[text()='Agree and proceed']")
     private ExtendedWebElement acceptCookies;
 
-    public HomePageBase(WebDriver driver) {
+    protected HomePageBase(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
     }
+
 
     public abstract BrandModelsPageBase selectBrand(String brandName);
 

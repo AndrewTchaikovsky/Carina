@@ -24,6 +24,7 @@ public class FooterMenu extends FooterMenuBase {
         super(driver, searchContext);
     }
 
+
     @Override
     public HomePage openHomePage() {
         homeLink.click();

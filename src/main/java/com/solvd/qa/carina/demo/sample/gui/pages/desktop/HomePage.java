@@ -40,6 +40,7 @@ public class HomePage extends HomePageBase {
     public HomePage(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(newsColumn);
+
     }
 
     @Override

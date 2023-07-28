@@ -24,7 +24,7 @@
 		<parameter name="b" value="3"/>
 		<parameter name="c" value="9"/>
 		<classes>
-			<class name="com.solvd.qa.carina.demo.sampletests.DataProvidersSampleTest">
+			<class name="com.solvd.qa.carina.demo.sample.DataProvidersSampleTest">
 				<methods>
 					<include name="testSubtractOperation"/>
 					<include name="testMultiplyOperation"/>
@@ -35,7 +35,7 @@
 
 	<test name="Sum operation test" parallel="methods">
 		<classes>
-			<class name="com.solvd.qa.carina.demo.sampletests.CustomDataProvidersSampleTest">
+			<class name="com.solvd.qa.carina.demo.sample.CustomDataProvidersSampleTest">
 				<methods>
 					<include name="testXlsSumOperation"/>
 					<include name="testCsvSumOperation"/>
