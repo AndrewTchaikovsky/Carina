@@ -18,17 +18,4 @@ public class WebTest implements IAbstractTest {
         homePage.open();
         homePage.assertPageOpened();
     }
-
-//        // Select phone brand
-//        BrandModelsPageBase productsPage = homePage.selectBrand("Samsung");
-//        // Select phone model
-//        ModelInfoPageBase productInfoPage = productsPage.selectModel("Galaxy A04");
-//        // Verify phone specifications
-//        SoftAssert softAssert = new SoftAssert();
-//        softAssert.assertEquals(productInfoPage.readDisplay(), "6.5\"", "Invalid display info!");
-//        softAssert.assertEquals(productInfoPage.readCamera(), "50MP", "Invalid camera info!");
-//        softAssert.assertEquals(productInfoPage.readRam(), "3-8GB RAM", "Invalid ram info!");
-//        softAssert.assertEquals(productInfoPage.readBattery(), "5000mAh", "Invalid battery info!");
-//        softAssert.assertAll();
-//    }
 }
