@@ -1,6 +1,6 @@
 package com.solvd.qa.carina.demo;
 
-import com.solvd.qa.carina.demo.web.HomePageWeb;
+import com.solvd.qa.carina.demo.gui.pages.desktop.HomePage;
 import org.testng.annotations.Test;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -15,7 +15,7 @@ public class WebTest implements IAbstractTest {
     @TestLabel(name = "feature", value = { "web", "regression" })
     public void verifyOpeningPage() {
         // Open eBay home page and verify page is opened
-        HomePageWeb homePage = initPage(getDriver(), HomePageWeb.class);
+        HomePage homePage = initPage(getDriver(), HomePage.class);
         homePage.open();
         homePage.assertPageOpened();
     }
