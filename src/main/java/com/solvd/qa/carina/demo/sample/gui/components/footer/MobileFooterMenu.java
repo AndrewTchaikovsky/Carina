@@ -27,7 +27,7 @@ public class MobileFooterMenu extends FooterMenuBase implements ICustomTypePageF
         return initPage(driver, NewsPageBase.class);
     }
 
-    @Override
+
     public HomePageBase openHomePage() {
         homeLink.click();
         return initPage(driver, HomePageBase.class);

@@ -1,5 +1,7 @@
 package com.solvd.qa.carina.demo.sample.gui.components.footer;
 
+import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
+import com.solvd.qa.carina.demo.sample.gui.pages.common.HomePageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -24,12 +26,6 @@ public class FooterMenu extends FooterMenuBase {
         super(driver, searchContext);
     }
 
-
-    @Override
-    public HomePage openHomePage() {
-        homeLink.click();
-        return new HomePage(driver);
-    }
 
     public CompareModelsPage openComparePage() {
         compareLink.scrollTo();

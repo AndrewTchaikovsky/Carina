@@ -1,5 +1,6 @@
 package com.solvd.qa.carina.demo.sample.gui.components.footer;
 
+import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
@@ -18,6 +19,4 @@ public abstract class FooterMenuBase extends AbstractUIObject {
     }
 
     public abstract NewsPageBase openNewsPage();
-
-    public abstract HomePageBase openHomePage();
 }
