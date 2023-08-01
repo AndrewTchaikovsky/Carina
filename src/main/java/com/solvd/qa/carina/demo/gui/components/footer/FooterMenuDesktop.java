@@ -22,6 +22,7 @@ public class FooterMenuDesktop extends FooterMenuGeneral {
     }
 
 
+    @Override
     public BuyPage openBuyPage() {
         buyLink.scrollTo();
         buyLink.hover();
@@ -29,6 +30,7 @@ public class FooterMenuDesktop extends FooterMenuGeneral {
         return new BuyPage(driver);
     }
 
+    @Override
     public SellPage openSellPage() {
         sellLink.scrollTo();
         sellLink.hover();

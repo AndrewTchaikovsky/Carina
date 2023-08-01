@@ -1,7 +1,7 @@
 package com.solvd.qa.carina.demo.gui.components.footer;
 
 import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
-import com.solvd.qa.carina.demo.gui.pages.desktop.SellPage;
+import com.solvd.qa.carina.demo.gui.pages.common.SellPageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
@@ -14,5 +14,5 @@ public abstract class FooterMenuGeneral extends AbstractUIObject {
     }
 
     public abstract BuyPageBase openBuyPage();
-    public abstract SellPage openSellPage();
+    public abstract SellPageBase openSellPage();
 }
