@@ -12,5 +12,5 @@ public abstract class SellPageBase extends AbstractPage {
     protected SellPageBase(WebDriver driver) {
         super(driver);
     }
-    public abstract void clickLogo();
+    public abstract HomePageAbstract clickLogo();
 }

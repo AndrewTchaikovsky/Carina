@@ -14,5 +14,6 @@ public abstract class FooterMenuGeneral extends AbstractUIObject {
     }
 
     public abstract BuyPageBase openBuyPage();
+
     public abstract SellPageBase openSellPage();
 }

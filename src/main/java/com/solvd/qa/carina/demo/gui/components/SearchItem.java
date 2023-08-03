@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class SearchItem extends AbstractUIObject {
-    @FindBy(xpath="./a/div/span")
+    @FindBy(xpath = "./a/div/span")
     public ExtendedWebElement titleLink;
 
     public SearchItem(WebDriver driver, SearchContext sc) {
