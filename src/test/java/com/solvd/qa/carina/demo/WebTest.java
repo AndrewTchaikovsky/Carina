@@ -4,11 +4,13 @@ import com.solvd.qa.carina.demo.gui.components.SearchItem;
 import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
 import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
 import com.solvd.qa.carina.demo.gui.pages.common.SellPageBase;
+import com.solvd.qa.carina.demo.gui.pages.desktop.BuyPage;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.agent.core.annotation.TestLabel;
@@ -39,7 +41,6 @@ public class WebTest implements IAbstractTest {
         BuyPageBase buyPage = homePage.getFooterMenu().openBuyPage();
         buyPage.assertPageOpened();
         // Verify text in buy categories
-        SoftAssert softAssert = new SoftAssert();
         List<String> buyLinks = buyPage.getBuyLinks();
         List<String> buyLinksNames = Arrays.asList("eBay Motors", "Clothing, Shoes & Accessories");
         for (String buyLinkName : buyLinksNames) {
@@ -86,6 +87,22 @@ public class WebTest implements IAbstractTest {
             }
         }
         softAssert.assertAll();
+    }
+
+    @Test(dataProvider = "categoryNames", dataProviderClass = BuyPage.class)
+    @MethodOwner(owner = "achaykovskiy")
+    @TestPriority(Priority.P4)
+    @TestLabel(name = "feature", value = {"web", "acceptance"})
+    public void testContainers() {
+        HomePageAbstract homePage = initPage(getDriver(), HomePageAbstract.class);
+        homePage.open();
+        homePage.assertPageOpened();
+
+        BuyPageBase buyPage = homePage.getFooterMenu().openBuyPage();
+        buyPage.assertPageOpened();
+
+        List<String> containerLinks = buyPage.getContainerLinks();
+
     }
 
 }

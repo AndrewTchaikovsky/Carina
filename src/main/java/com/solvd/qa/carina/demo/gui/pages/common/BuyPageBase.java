@@ -11,4 +11,6 @@ public abstract class BuyPageBase extends AbstractPage {
     }
 
     public abstract List<String> getBuyLinks();
+
+    public abstract List<String> getContainerLinks();
 }
