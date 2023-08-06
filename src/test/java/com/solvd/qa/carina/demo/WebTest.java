@@ -1,10 +1,12 @@
 package com.solvd.qa.carina.demo;
 
+import com.solvd.qa.carina.demo.api.RequestWeatherByCityNameMethod;
 import com.solvd.qa.carina.demo.gui.components.SearchItem;
 import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
 import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
 import com.solvd.qa.carina.demo.gui.pages.common.SellPageBase;
 import com.solvd.qa.carina.demo.gui.pages.desktop.BuyPage;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -89,11 +91,11 @@ public class WebTest implements IAbstractTest {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "categoryNames", dataProviderClass = BuyPage.class)
+    @Test(dataProvider = "containerData", dataProviderClass = BuyPage.class)
     @MethodOwner(owner = "achaykovskiy")
     @TestPriority(Priority.P4)
     @TestLabel(name = "feature", value = {"web", "acceptance"})
-    public void testContainers() {
+    public void testContainers(String containerName, List<String> containerLinkNames) {
         HomePageAbstract homePage = initPage(getDriver(), HomePageAbstract.class);
         homePage.open();
         homePage.assertPageOpened();
@@ -101,8 +103,10 @@ public class WebTest implements IAbstractTest {
         BuyPageBase buyPage = homePage.getFooterMenu().openBuyPage();
         buyPage.assertPageOpened();
 
-        List<String> containerLinks = buyPage.getContainerLinks();
-
+        List<String> containerLinks = buyPage.getContainerLinks(containerName);
+        for (String containerLinkName : containerLinkNames) {
+            assertTrue(containerLinks.contains(containerLinkName), "Link is not present " + containerLinkName);
+        }
     }
 
 }

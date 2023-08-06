@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.annotations.DataProvider;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ public class BuyPage extends BuyPageBase {
     @FindBy(xpath = "//h1[text()='All Categories']/following-sibling::ul/li/a")
     private List<ExtendedWebElement> links;
     @FindBy(xpath = "//div[@class = 'l1s-container']//h3[a[text() = '%s']]/following-sibling::ul/li")
-    private List<ExtendedWebElement> containerLinks;
+    private ExtendedWebElement containerLink;
 
     @FindBy(xpath = "//h1[text()='All Categories']")
     private ExtendedWebElement allCategories;
@@ -38,24 +39,22 @@ public class BuyPage extends BuyPageBase {
     }
 
     @Override
-    public List<String> getContainerLinks() {
-        return containerLinks.stream()
+    public List<String> getContainerLinks(String containerName) {
+        return containerLink.formatToList(containerName).stream()
                 .map(e -> e.getText())
+                .map(e -> e.split("\n")[0])
                 .collect(Collectors.toList());
     }
 
-    @DataProvider(name = "categoryNames")
-    public static Object[][] categoryNames() {
+    static List<String> autoPartsAndAccessoriesLinks = Arrays.asList("Car & Truck Parts & Accessories", "Motorcycle & Scooter Parts & Accessories", "Performance & Racing Parts", "In-Car Technology, GPS & Security Devices", "Boat Parts", "Vehicle Repair Manuals & Literature", "View all in Auto Parts & Accessories");
+    static List<String> otherVehiclesAndTrailersLinks = Arrays.asList("RVs & Campers", "Commercial Trucks", "Buses", "Vehicle Trailers", "Aircraft", "Golf Carts", "View all in Other Vehicles & Trailers");
+    static List<String> motorcyclesLinks = Arrays.asList("Harley-Davidson Motorcycles", "Honda Motorcycles");
+    @DataProvider(name = "containerData")
+    public static Object[][] containerData() {
         return new Object[][]{
-                {"Auto Parts & Accessories"},
-                {"Other Vehicles & Trailers"},
-                {"Motorcycles"},
-                {"Automotive Tools & Supplies"},
-                {"Powersport Vehicles"},
-                {"Boats"},
-                {"Men's Clothing, Shoes & Accessories"},
-                {"Women's Clothing, Shoes & Accessories"},
-                {"Specialty Clothing, Shoes & Accessories"}
+                {"Auto Parts & Accessories", autoPartsAndAccessoriesLinks},
+                {"Other Vehicles & Trailers", otherVehiclesAndTrailersLinks},
+                {"Motorcycles", motorcyclesLinks}
         };
     }
 
