@@ -1,6 +1,8 @@
 package com.solvd.qa.carina.demo.gui.pages.desktop;
 
 import com.solvd.qa.carina.demo.gui.components.footer.FooterMenuDesktop;
+import com.solvd.qa.carina.demo.gui.components.navigator.NavigatorMenu;
+import com.solvd.qa.carina.demo.gui.components.navigator.NavigatorMenuBase;
 import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import org.openqa.selenium.WebDriver;
@@ -16,10 +18,10 @@ public class HomePageDesktop extends HomePageAbstract {
     private FooterMenuDesktop footerMenu;
 
     @FindBy(className = "vl-flyout-nav__container")
-    private ExtendedWebElement navigator;
+    private NavigatorMenu navigatorMenu;
 
-    @FindBy(id = "gh-btn")
-    private ExtendedWebElement searchButton;
+    @FindBy(id = "//div[@id = 'mainContent']")
+    private ExtendedWebElement mainContent;
 
     @FindBy(xpath = "//input[@id='gh-ac']")
     private ExtendedWebElement searchBar;
@@ -27,10 +29,13 @@ public class HomePageDesktop extends HomePageAbstract {
     @FindBy(xpath = "//select[@id='gh-cat']")
     private ExtendedWebElement allCategories;
 
+    @FindBy(id = "gh-btn")
+    private ExtendedWebElement searchButton;
+
     public HomePageDesktop(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(navigator);
+        setUiLoadedMarker(searchButton);
     }
 
     @Override
@@ -45,6 +50,11 @@ public class HomePageDesktop extends HomePageAbstract {
         searchBar.type(searchInput);
         searchButton.click(3);
         return new SearchPage(driver);
+    }
+
+    @Override
+    public NavigatorMenu getNavigatorMenu() {
+        return navigatorMenu;
     }
 
 }
