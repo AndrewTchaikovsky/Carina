@@ -1,6 +1,7 @@
-package com.solvd.qa.carina.demo.gui.components.footer;
+package com.solvd.qa.carina.demo.gui.components;
 
 import com.solvd.qa.carina.demo.gui.pages.desktop.BuyPage;
+import com.solvd.qa.carina.demo.gui.pages.desktop.CollectiblesPage;
 import com.solvd.qa.carina.demo.gui.pages.desktop.SellPage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -8,21 +9,19 @@ import org.openqa.selenium.support.FindBy;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 
-public class FooterMenuDesktop extends FooterMenuGeneral {
+public class EbayPageDesktop extends AbstractEbayPage {
 
     @FindBy(xpath = "//div[@id='gf-BIG']//td[1]/h3/a")
     private ExtendedWebElement buyLink;
 
     @FindBy(xpath = "//div[@id='gf-BIG']//td[2]/h3[1]/a")
     private ExtendedWebElement sellLink;
-
-
-    public FooterMenuDesktop(WebDriver driver, SearchContext searchContext) {
+    @FindBy(xpath = "//li[@class = 'vl-flyout-nav__js-tab']/a[text()='Collectibles']")
+    private ExtendedWebElement collectiblesLink;
+    public EbayPageDesktop(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-
-    @Override
     public BuyPage openBuyPage() {
         buyLink.scrollTo();
         buyLink.hover();
@@ -30,12 +29,19 @@ public class FooterMenuDesktop extends FooterMenuGeneral {
         return new BuyPage(driver);
     }
 
-    @Override
     public SellPage openSellPage() {
         sellLink.scrollTo();
         sellLink.hover();
         sellLink.click();
         return new SellPage(driver);
+    }
+
+    @Override
+    public CollectiblesPage openCollectiblesPage() {
+        collectiblesLink.scrollTo();
+        collectiblesLink.hover();
+        collectiblesLink.click();
+        return new CollectiblesPage(driver);
     }
 
 }

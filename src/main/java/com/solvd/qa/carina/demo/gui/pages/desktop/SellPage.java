@@ -9,8 +9,6 @@ import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = SellPageBase.class)
 public class SellPage extends SellPageBase {
-    @FindBy(xpath = "//section[@id='image_banner_1']//a")
-    private ExtendedWebElement listAnItemButton;
 
     public SellPage(WebDriver driver) {
         super(driver);

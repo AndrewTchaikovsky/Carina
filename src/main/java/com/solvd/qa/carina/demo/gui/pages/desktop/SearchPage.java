@@ -11,7 +11,7 @@ public class SearchPage extends SearchPageBase {
     @FindBy(xpath = "//div[@class='s-item__info clearfix']")
     private List<SearchItem> searchItems;
 
-    protected SearchPage(WebDriver driver) {
+    public SearchPage(WebDriver driver) {
         super(driver);
     }
 

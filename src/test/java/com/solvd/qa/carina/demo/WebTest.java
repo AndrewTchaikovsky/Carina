@@ -1,11 +1,11 @@
 package com.solvd.qa.carina.demo;
 
+import com.solvd.qa.carina.demo.dp.WebDP;
 import com.solvd.qa.carina.demo.gui.components.SearchItem;
 import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
 import com.solvd.qa.carina.demo.gui.pages.common.CollectiblesPageBase;
 import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
 import com.solvd.qa.carina.demo.gui.pages.common.SellPageBase;
-import com.solvd.qa.carina.demo.gui.pages.desktop.BuyPage;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -28,6 +28,7 @@ import static com.mongodb.util.MyAsserts.assertTrue;
 public class WebTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
+    // WEB BROWSER ONLY
     @Test
     @MethodOwner(owner = "achaykovskiy")
     @TestPriority(Priority.P3)
@@ -48,6 +49,7 @@ public class WebTest implements IAbstractTest {
         }
     }
 
+    // WEB BROWSER ONLY
     @Test
     @MethodOwner(owner = "achaykovskiy")
     @TestPriority(Priority.P3)
@@ -64,6 +66,7 @@ public class WebTest implements IAbstractTest {
         sellPage.clickLogo().assertPageOpened();
     }
 
+    // WEB AND MOBILE
     @Test
     @MethodOwner(owner = "achaykovskiy")
     @TestLabel(name = "feature", value = {"web", "acceptance"})
@@ -89,7 +92,8 @@ public class WebTest implements IAbstractTest {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "containerData", dataProviderClass = BuyPage.class)
+    // WEB BROWSER ONLY
+    @Test(dataProvider = "containerData", dataProviderClass = WebDP.class)
     @MethodOwner(owner = "achaykovskiy")
     @TestPriority(Priority.P4)
     @TestLabel(name = "feature", value = {"web", "acceptance"})
@@ -106,7 +110,7 @@ public class WebTest implements IAbstractTest {
             assertTrue(containerLinks.contains(containerLinkName), "Link is not present " + containerLinkName);
         }
     }
-
+    // COULD NOT FIND AN ACTION TO SWIPE TO COLLECTIBLES LINK
     @Test
     @MethodOwner(owner = "achaykovskiy")
     @TestPriority(Priority.P5)
