@@ -2,7 +2,6 @@ package com.solvd.qa.carina.demo.gui.pages.android;
 
 import com.solvd.qa.carina.demo.gui.components.EbayPageAndroid;
 import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
-import com.solvd.qa.carina.demo.gui.pages.desktop.SearchPage;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
@@ -26,12 +25,12 @@ public class HomePageAndroid extends HomePageAbstract {
     public EbayPageAndroid getNavigatorMenu() {
         return navigatorMenu;
     }
-    public SearchPage openSearchPage(String searchInput) {
+    public SearchPageAndroid openSearchPage(String searchInput) {
         searchBar.format("submit").click();
         searchBar.isElementPresent(3);
         searchBar.type(searchInput);
         searchButton.click(3);
-        return new SearchPage(driver);
+        return new SearchPageAndroid(driver);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.solvd.qa.carina.demo.gui.pages.common;
 
 import com.solvd.qa.carina.demo.gui.components.AbstractEbayPage;
-import com.solvd.qa.carina.demo.gui.pages.desktop.SearchPage;
 import org.openqa.selenium.WebDriver;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.support.FindBy;

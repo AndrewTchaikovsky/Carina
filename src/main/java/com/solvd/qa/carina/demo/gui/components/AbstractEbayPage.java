@@ -6,11 +6,8 @@ import com.solvd.qa.carina.demo.gui.pages.common.SellPageBase;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 public abstract class AbstractEbayPage extends AbstractUIObject {
-    @FindBy(id = "vlGlobalFooter")
-    public EbayPageDesktop footerMenu;
     public AbstractEbayPage(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
