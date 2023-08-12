@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public abstract class SellPageBase extends AbstractPage {
     @FindBy(xpath = "//section[@id='image_banner_1']//a")
     protected ExtendedWebElement listAnItemButton;
-    @FindBy(xpath = "//img[@id='gh-logo']")
+    @FindBy(xpath = "//*[@id='gh-logo']")
     protected ExtendedWebElement eBayLogo;
     protected SellPageBase(WebDriver driver) {
         super(driver);

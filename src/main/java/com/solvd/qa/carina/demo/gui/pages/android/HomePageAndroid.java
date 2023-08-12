@@ -1,6 +1,8 @@
 package com.solvd.qa.carina.demo.gui.pages.android;
 
+import com.solvd.qa.carina.demo.gui.components.AbstractEbayPage;
 import com.solvd.qa.carina.demo.gui.components.EbayPageAndroid;
+import com.solvd.qa.carina.demo.gui.components.EbayPageDesktop;
 import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -10,6 +12,8 @@ import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageAbstract.class)
 public class HomePageAndroid extends HomePageAbstract {
+    @FindBy(id = "vlGlobalFooter")
+    public EbayPageAndroid footerMenu;
     @FindBy(className = "vl-nav-destinations__container")
     private EbayPageAndroid navigatorMenu;
     @FindBy(xpath = "//input[@id='kw']")
@@ -21,6 +25,15 @@ public class HomePageAndroid extends HomePageAbstract {
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(searchButton);
     }
+    public EbayPageAndroid getFooterMenu() {
+        return footerMenu;
+    }
+
+    @Override
+    public EbayPageDesktop getTopLevelBar() {
+        return null;
+    }
+
     @Override
     public EbayPageAndroid getNavigatorMenu() {
         return navigatorMenu;

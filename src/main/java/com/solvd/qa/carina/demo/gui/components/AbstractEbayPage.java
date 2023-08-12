@@ -8,10 +8,18 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
 public abstract class AbstractEbayPage extends AbstractUIObject {
+
+    public AbstractEbayPage(WebDriver driver) {
+        super(driver);
+    }
+
     public AbstractEbayPage(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
+
     public abstract CollectiblesPageBase openCollectiblesPage();
+
     public abstract BuyPageBase openBuyPage();
+
     public abstract SellPageBase openSellPage();
 }

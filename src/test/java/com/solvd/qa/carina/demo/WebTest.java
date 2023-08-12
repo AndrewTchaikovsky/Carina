@@ -2,10 +2,7 @@ package com.solvd.qa.carina.demo;
 
 import com.solvd.qa.carina.demo.dp.WebDP;
 import com.solvd.qa.carina.demo.gui.components.SearchItem;
-import com.solvd.qa.carina.demo.gui.pages.common.BuyPageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.CollectiblesPageBase;
-import com.solvd.qa.carina.demo.gui.pages.common.HomePageAbstract;
-import com.solvd.qa.carina.demo.gui.pages.common.SellPageBase;
+import com.solvd.qa.carina.demo.gui.pages.common.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -23,6 +20,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.mongodb.util.MyAsserts.assertEquals;
 import static com.mongodb.util.MyAsserts.assertTrue;
 
 public class WebTest implements IAbstractTest {
@@ -128,6 +126,21 @@ public class WebTest implements IAbstractTest {
         for (String popularCategoriesName : popularCategoriesNames) {
             assertTrue(popularCategoriesLinks.contains(popularCategoriesName), "Link is not present " + popularCategoriesName);
         }
+    }
+
+    @Test
+    @MethodOwner(owner = "achaykovskiy")
+    @TestPriority(Priority.P4)
+    @TestLabel(name = "feature", value = {"web", "regression"})
+     public void testNegativeSignIn() {
+        HomePageAbstract homePage = initPage(getDriver(), HomePageAbstract.class);
+        homePage.open();
+        homePage.assertPageOpened();
+
+        SignInPageAbstract signInPage = homePage.getTopLevelBar().signIn();
+        signInPage.setEmail();
+        signInPage.clickOnContinueButton();
+        assertEquals(signInPage.getErrorText(), "We ran into a problem. Please try again later.");
     }
 
 }
